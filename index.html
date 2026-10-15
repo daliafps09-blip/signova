@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SignovaLab - Gesture Detection Platform</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SignovaLab</title>
   
   <!-- TensorFlow.js and Teachable Machine Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
@@ -14,7 +14,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       scroll-behavior: smooth;
     }
 
@@ -33,31 +33,23 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 50px;
-      background: rgba(30, 30, 36, 0.95);
-      backdrop-filter: blur(10px);
+      padding: 18px 40px;
+      background: #1E1E24;
       border-bottom: 1px solid #2A2A35;
       z-index: 1000;
     }
 
     .logo {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       font-weight: 700;
       color: #00E5FF;
-      letter-spacing: 0.5px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 30px;
     }
 
     .nav-links a {
       color: #A0A0AB;
       text-decoration: none;
+      margin-left: 20px;
       font-weight: 500;
-      font-size: 0.95rem;
-      transition: color 0.2s ease;
     }
 
     .nav-links a:hover {
@@ -78,52 +70,42 @@
     /* Home Section */
     #home {
       text-align: center;
-      max-width: 850px;
-      margin: 0 auto;
+      max-width: 800px;
     }
 
     .hero-title {
-      font-size: 5.5rem;
+      font-size: 5rem;
       font-weight: 900;
       color: #00E5FF;
-      margin-bottom: 20px;
-      letter-spacing: -2px;
-      line-height: 1.1;
+      margin-bottom: 15px;
     }
 
     #home p {
       color: #A0A0AB;
-      font-size: 1.25rem;
-      margin-bottom: 35px;
-      max-width: 650px;
+      font-size: 1.2rem;
+      margin-bottom: 30px;
     }
 
     .btn-main {
       background-color: #00E5FF;
       color: #121212;
-      padding: 16px 36px;
+      padding: 14px 32px;
       border-radius: 8px;
       font-weight: 700;
-      font-size: 1.05rem;
       text-decoration: none;
-      transition: transform 0.2s, background-color 0.2s;
       display: inline-block;
-    }
-
-    .btn-main:hover {
-      transform: scale(1.03);
-      background-color: #00c4db;
     }
 
     /* Detector Section */
     #detector {
       background-color: #16161A;
+      width: 100%;
     }
 
     .section-title {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 800;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       color: #FFFFFF;
       text-align: center;
     }
@@ -133,12 +115,11 @@
       flex-direction: row;
       background-color: #1E1E24;
       border: 1px solid #2A2A35;
-      border-radius: 20px;
-      padding: 30px;
-      gap: 30px;
-      max-width: 960px;
+      border-radius: 16px;
+      padding: 24px;
+      gap: 24px;
+      max-width: 900px;
       width: 100%;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
     }
 
     .left-column {
@@ -146,14 +127,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-
-    .app-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #00E5FF;
-      margin-bottom: 15px;
-      text-align: center;
     }
 
     .controls-row {
@@ -171,15 +144,11 @@
       font-weight: 600;
       font-size: 0.9rem;
       cursor: pointer;
-      transition: all 0.2s ease;
     }
 
     .btn-cam {
       background-color: #7C4DFF;
       color: #FFFFFF;
-    }
-    .btn-cam:hover {
-      background-color: #6538E0;
     }
 
     .btn-upload {
@@ -187,17 +156,13 @@
       color: #00E5FF;
       border: 1px solid #00E5FF;
     }
-    .btn-upload:hover {
-      background-color: #00E5FF;
-      color: #121212;
-    }
 
     .media-box {
       width: 100%;
-      height: 260px;
+      height: 250px;
       background-color: #121212;
       border: 2px dashed #2A2A35;
-      border-radius: 12px;
+      border-radius: 10px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -209,38 +174,302 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 10px;
     }
 
     .upload-placeholder {
       text-align: center;
-      padding: 20px;
       color: #A0A0AB;
       cursor: pointer;
     }
-    .upload-placeholder span {
-      color: #00E5FF;
-      font-weight: 600;
-      display: block;
-      margin-top: 6px;
-    }
+
     input[type="file"] {
       display: none;
     }
 
     .right-column {
       flex: 1;
-      background-color: #F8F9FA;
+      background-color: #FFFFFF;
       color: #121212;
-      border-radius: 16px;
-      padding: 24px;
+      border-radius: 12px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
     }
 
-    .stats-header-tag {
-      font-size: 0.75rem;
+    .stats-main-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #111111;
+      margin-bottom: 20px;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: #495057;
+    }
+
+    .stat-value {
+      font-size: 1rem;
       font-weight: 700;
-      letter-spacing:
+    }
+
+    .stat-value.highlight {
+      color: #7C4DFF;
+    }
+
+    /* How It Works & About */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .card {
+      background: #1E1E24;
+      border: 1px solid #2A2A35;
+      padding: 24px;
+      border-radius: 12px;
+    }
+
+    .card h3 {
+      color: #00E5FF;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #A0A0AB;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      .main-wrapper { flex-direction: column; }
+      .hero-title { font-size: 3.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">SignovaLab</div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#detector">Detector</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#about">About</a>
+    </div>
+  </nav>
+
+  <section id="home">
+    <h1 class="hero-title">SignovaLab</h1>
+    <p>Instantly translate sign language into clear, readable text using advanced computer vision and machine learning.</p>
+    <a href="#detector" class="btn-main">Launch Detector App</a>
+  </section>
+
+  <section id="detector">
+    <div class="section-title">Gesture Detector Tool</div>
+    <div class="main-wrapper">
+      <div class="left-column">
+        <div class="controls-row">
+          <button class="btn btn-cam" id="toggle-cam-btn">Start Camera</button>
+          <button class="btn btn-upload" onclick="document.getElementById('file-input').click()">Upload Image</button>
+          <input type="file" id="file-input" accept="image/*">
+        </div>
+
+        <div class="media-box">
+          <video id="webcam-video" autoplay playsinline muted style="display: none;"></video>
+          <div class="upload-placeholder" id="upload-prompt" onclick="document.getElementById('file-input').click()">
+            <p>Click to upload or start camera</p>
+          </div>
+          <img id="image-preview" style="display: none;" alt="Preview" />
+        </div>
+      </div>
+
+      <div class="right-column">
+        <div>
+          <div class="stats-main-title">System Output</div>
+
+          <div class="stat-row">
+            <span class="stat-label">Detected Gesture</span>
+            <span class="stat-value highlight" id="out-gesture">Awaiting Input</span>
+          </div>
+
+          <div class="stat-row">
+            <span class="stat-label">Confidence Score</span>
+            <span class="stat-value" id="out-confidence">0.0%</span>
+          </div>
+
+          <div class="stat-row">
+            <span class="stat-label">Frame Latency</span>
+            <span class="stat-value" id="out-latency">-- ms</span>
+          </div>
+        </div>
+
+        <div class="stat-row" style="border-bottom: none;">
+          <span class="stat-label">Engine Status</span>
+          <span class="stat-value" style="color: #00C853;" id="out-status">Initializing...</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-it-works">
+    <div class="section-title">How It Works</div>
+    <div class="cards-grid">
+      <div class="card">
+        <h3>TensorFlow.js</h3>
+        <p>Runs neural network computations client-side directly in the browser engine for maximum performance.</p>
+      </div>
+      <div class="card">
+        <h3>Teachable Machine</h3>
+        <p>Custom trained models that analyze hand gesture shapes and angles in real time.</p>
+      </div>
+      <div class="card">
+        <h3>Real-Time Metrics</h3>
+        <p>Monitors processing speed and confidence ratings as soon as video or image data is provided.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-title">About SignovaLab</div>
+    <p style="max-width: 600px; text-align: center; color: #A0A0AB;">SignovaLab is an accessibility-driven web application designed to make sign language translation seamless through lightweight computer vision models.</p>
+  </section>
+
+  <script>
+    const MODEL_URL = "https://teachablemachine.withgoogle.com/models/ae8QMmd8K/";
+    let model, maxPredictions;
+    let mediaStream = null;
+    let isPredictingActive = false;
+
+    async function initModel() {
+      try {
+        const modelURL = MODEL_URL + "model.json";
+        const metadataURL = MODEL_URL + "metadata.json";
+        model = await tmImage.load(modelURL, metadataURL);
+        maxPredictions = model.getTotalClasses();
+        document.getElementById("out-status").innerText = "Ready";
+      } catch (err) {
+        document.getElementById("out-status").innerText = "Model Error";
+        console.error(err);
+      }
+    }
+    initModel();
+
+    const videoElement = document.getElementById("webcam-video");
+    const toggleCamBtn = document.getElementById("toggle-cam-btn");
+    const uploadPrompt = document.getElementById("upload-prompt");
+    const imagePreview = document.getElementById("image-preview");
+
+    toggleCamBtn.addEventListener("click", async () => {
+      if (mediaStream) {
+        stopCamera();
+        return;
+      }
+
+      try {
+        uploadPrompt.style.display = "none";
+        imagePreview.style.display = "none";
+        videoElement.style.display = "block";
+
+        mediaStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: false });
+        videoElement.srcObject = mediaStream;
+        
+        toggleCamBtn.innerText = "Stop Camera";
+        toggleCamBtn.style.backgroundColor = "#D32F2F";
+        
+        if (!model) await initModel();
+        isPredictingActive = true;
+        predictLoop();
+      } catch (err) {
+        alert("Camera access blocked. Please check browser permissions.");
+        console.error(err);
+        stopCamera();
+      }
+    });
+
+    function stopCamera() {
+      isPredictingActive = false;
+      if (mediaStream) {
+        mediaStream.getTracks().forEach(track => track.stop());
+        mediaStream = null;
+      }
+      videoElement.style.display = "none";
+      uploadPrompt.style.display = "block";
+      toggleCamBtn.innerText = "Start Camera";
+      toggleCamBtn.style.backgroundColor = "#7C4DFF";
+    }
+
+    async function predictLoop() {
+      if (!isPredictingActive || !mediaStream) return;
+      
+      const startTime = performance.now();
+      try {
+        const prediction = await model.predict(videoElement);
+        let top = prediction[0];
+        for (let i = 1; i < maxPredictions; i++) {
+          if (prediction[i].probability > top.probability) {
+            top = prediction[i];
+          }
+        }
+        
+        const latency = (performance.now() - startTime).toFixed(1);
+        const confidence = (top.probability * 100).toFixed(1);
+        
+        document.getElementById("out-gesture").innerText = top.className;
+        document.getElementById("out-confidence").innerText = `${confidence}%`;
+        document.getElementById("out-latency").innerText = `${latency}ms`;
+      } catch (e) {
+        console.error(e);
+      }
+
+      if (isPredictingActive) {
+        requestAnimationFrame(predictLoop);
+      }
+    }
+
+    document.getElementById("file-input").addEventListener("change", async (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      if (mediaStream) stopCamera();
+
+      imagePreview.src = URL.createObjectURL(file);
+      imagePreview.style.display = "block";
+      uploadPrompt.style.display = "none";
+      document.getElementById("out-gesture").innerText = "Analyzing...";
+
+      imagePreview.onload = async function() {
+        if (!model) await initModel();
+        const startTime = performance.now();
+        await imagePreview.decode();
+        
+        const prediction = await model.predict(imagePreview);
+        let top = prediction[0];
+        for (let i = 1; i < maxPredictions; i++) {
+          if (prediction[i].probability > top.probability) {
+            top = prediction[i];
+          }
+        }
+        
+        const latency = (performance.now() - startTime).toFixed(1);
+        const confidence = (top.probability * 100).toFixed(1);
+        
+        document.getElementById("out-gesture").innerText = top.className;
+        document.getElementById("out-confidence").innerText = `${confidence}%`;
+        document.getElementById("out-latency").innerText = `${latency}ms`;
+      };
+    });
+  </script>
+</body>
+</html>
