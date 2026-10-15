@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SignovaLab - Gesture Detection Platform</title>
+  
+  <!-- TensorFlow.js and Teachable Machine Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #121212;
+      color: #FFFFFF;
+      line-height: 1.6;
+    }
+
+    /* Navigation Bar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background: rgba(30, 30, 36, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #2A2A35;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #00E5FF;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: #A0A0AB;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #00E5FF;
+    }
+
+    /* Section Layouts */
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 100px 20px 60px 20px;
+      border-bottom: 1px solid #1E1E24;
+    }
+
+    /* Home Section */
+    #home {
+      text-align: center;
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .hero-title {
+      font-size: 5.5rem;
+      font-weight: 900;
+      color: #00E5FF;
+      margin-bottom: 20px;
+      letter-spacing: -2px;
+      line-height: 1.1;
+    }
+
+    #home p {
+      color: #A0A0AB;
+      font-size: 1.25rem;
+      margin-bottom: 35px;
+      max-width: 650px;
+    }
+
+    .btn-main {
+      background-color: #00E5FF;
+      color: #121212;
+      padding: 16px 36px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-decoration: none;
+      transition: transform 0.2s, background-color 0.2s;
+      display: inline-block;
+    }
+
+    .btn-main:hover {
+      transform: scale(1.03);
+      background-color: #00c4db;
+    }
+
+    /* Detector Section */
+    #detector {
+      background-color: #16161A;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 40px;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    .main-wrapper {
+      display: flex;
+      flex-direction: row;
+      background-color: #1E1E24;
+      border: 1px solid #2A2A35;
+      border-radius: 20px;
+      padding: 30px;
+      gap: 30px;
+      max-width: 960px;
+      width: 100%;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .left-column {
+      flex: 1.2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .app-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #00E5FF;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .controls-row {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-cam {
+      background-color: #7C4DFF;
+      color: #FFFFFF;
+    }
+    .btn-cam:hover {
+      background-color: #6538E0;
+    }
+
+    .btn-upload {
+      background-color: #2A2A35;
+      color: #00E5FF;
+      border: 1px solid #00E5FF;
+    }
+    .btn-upload:hover {
+      background-color: #00E5FF;
+      color: #121212;
+    }
+
+    .media-box {
+      width: 100%;
+      height: 260px;
+      background-color: #121212;
+      border: 2px dashed #2A2A35;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #webcam-video, #image-preview {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .upload-placeholder {
+      text-align: center;
+      padding: 20px;
+      color: #A0A0AB;
+      cursor: pointer;
+    }
+    .upload-placeholder span {
+      color: #00E5FF;
+      font-weight: 600;
+      display: block;
+      margin-top: 6px;
+    }
+    input[type="file"] {
+      display: none;
+    }
+
+    .right-column {
+      flex: 1;
+      background-color: #F8F9FA;
+      color: #121212;
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .stats-header-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing:
