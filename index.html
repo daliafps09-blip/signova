@@ -24,16 +24,17 @@
       line-height: 1.6;
     }
 
-    /* Navigation Bar */
+    /* Centered Navigation Bar */
     nav {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      padding: 18px 40px;
+      gap: 30px;
+      padding: 18px 20px;
       background: #1E1E24;
       border-bottom: 1px solid #2A2A35;
       z-index: 1000;
@@ -45,10 +46,14 @@
       color: #00E5FF;
     }
 
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
     .nav-links a {
       color: #A0A0AB;
       text-decoration: none;
-      margin-left: 20px;
       font-weight: 500;
     }
 
@@ -56,21 +61,26 @@
       color: #00E5FF;
     }
 
-    /* Section Layouts */
+    /* Centered Section Layouts */
     section {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      text-align: center;
       padding: 100px 20px 60px 20px;
       border-bottom: 1px solid #1E1E24;
     }
 
-    /* Home Section */
+    /* Centered Home Section */
     #home {
-      text-align: center;
-      max-width: 800px;
+      max-width: 850px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     .hero-title {
@@ -78,12 +88,16 @@
       font-weight: 900;
       color: #00E5FF;
       margin-bottom: 15px;
+      text-align: center;
+      width: 100%;
     }
 
     #home p {
       color: #A0A0AB;
       font-size: 1.2rem;
       margin-bottom: 30px;
+      text-align: center;
+      max-width: 650px;
     }
 
     .btn-main {
@@ -94,6 +108,7 @@
       font-weight: 700;
       text-decoration: none;
       display: inline-block;
+      margin: 0 auto;
     }
 
     /* Detector Section */
@@ -120,6 +135,7 @@
       gap: 24px;
       max-width: 900px;
       width: 100%;
+      text-align: left;
     }
 
     .left-column {
@@ -233,6 +249,7 @@
       gap: 20px;
       width: 100%;
       max-width: 900px;
+      text-align: left;
     }
 
     .card {
@@ -255,6 +272,7 @@
     @media (max-width: 768px) {
       .main-wrapper { flex-direction: column; }
       .hero-title { font-size: 3.5rem; }
+      nav { flex-direction: column; gap: 10px; padding: 12px; }
     }
   </style>
 </head>
@@ -328,7 +346,7 @@
     <div class="cards-grid">
       <div class="card">
         <h3>TensorFlow.js</h3>
-        <p>Runs neural network computations client-side directly in the browser engine for maximum performance.</p>
+        <p>Runs neural network computations client-side directly in the browser engine for maximum performance[span_0](start_span)[span_0](end_span).</p>
       </div>
       <div class="card">
         <h3>Teachable Machine</h3>
@@ -343,7 +361,7 @@
 
   <section id="about">
     <div class="section-title">About SignovaLab</div>
-    <p style="max-width: 600px; text-align: center; color: #A0A0AB;">SignovaLab is an accessibility-driven web application designed to make sign language translation seamless through lightweight computer vision models.</p>
+    <p style="max-width: 600px; color: #A0A0AB;">SignovaLab is an accessibility-driven web application designed to make sign language translation seamless through lightweight computer vision models.</p>
   </section>
 
   <script>
